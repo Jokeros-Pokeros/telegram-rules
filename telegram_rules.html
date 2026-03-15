@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила для чатов Telegram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 255, 0, 0.05) 25%, rgba(0, 255, 0, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, 0.05) 75%, rgba(0, 255, 0, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 255, 0, 0.05) 25%, rgba(0, 255, 0, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, 0.05) 75%, rgba(0, 255, 0, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 0, 0.02) 50%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 20px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            border: 2px solid #00ff00;
+            background: transparent;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            border-top: 1px dashed #00ff00;
+            margin: 40px 0;
+            opacity: 0.5;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #00ff00;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+        }
+
+        .icon {
+            font-size: 1.5em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+        }
+
+        .icon-warning {
+            color: #ffaa00;
+        }
+
+        .icon-forbidden {
+            color: #ff3333;
+        }
+
+        .section-content {
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 2px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .subsection {
+            margin-bottom: 25px;
+        }
+
+        .subsection-title {
+            font-weight: bold;
+            color: #00ff00;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .subsection-text {
+            color: #00dd00;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        ol, ul {
+            margin-left: 30px;
+            color: #00dd00;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        li strong {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border-left: 3px solid #00ff00;
+            padding-left: 8px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px dashed #00ff00;
+            text-align: center;
+            color: #00aa00;
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header-icons {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .section-title {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Правила для чатов Telegram</h1>
+            <div class="header-icons">
+                <button class="nav-btn">🌐 Главная страница</button>
+                <button class="nav-btn">🔗 Раздел ссылок</button>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-warning">⚠️</span>
+                <span>Временные правила:</span>
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <div class="subsection-text">
+                        Запрещены <strong>политические дискуссии, агитация и провокационные темы</strong>, не относящиеся к проекту;
+                    </div>
+                </div>
+                <div class="subsection">
+                    <div class="subsection-text">
+                        За <strong>чрезмерное использование нецензурной лексики</strong> будет выдаваться <strong>предупреждение</strong>.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-forbidden">🚫</span>
+                <span>Запрещено:</span>
+            </div>
+            <div class="section-content">
+                <ol>
+                    <li><strong>Спам;</strong></li>
+                    <li><strong>ASCII графика;</strong></li>
+                    <li><strong>Флуд;</strong></li>
+                    <li>Отправка <strong>материалов с тегом 18+ (Шок-контент);</strong></li>
+                    <li>Отправка <strong>стикеров</strong> с тегом 18+;</li>
+                    <li>Отправка <strong>сообщений/материалов от имени канала</strong> (Разрешено только от личного аккаунта);</li>
+                    <li>Содержание в <strong>профиле аккаунта</strong> неподобающего контента;</li>
+                    <li><strong>Прямые или косвенные оскорбления</strong> других участников;</li>
+                    <li><strong>Дискриминация</strong> по национальному, религиозному или иному признаку;</li>
+                    <li><strong>Угрозы;</strong></li>
+                    <li>Действия, направленные на <strong>провокацию конфликтов, травлю или преследование участников;</strong></li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">ℹ️</span>
+                <span>Дополнительно:</span>
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <div class="subsection-text">
+                        Администрация оставляет за собой право удалять сообщения и выдавать предупреждения в случае нарушения данных правил. При систематических нарушениях может быть произведена блокировка участника.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Последнее обновление правил: 2026 год</p>
+            <p>Просим вас соблюдать данные правила и уважать других участников сообщества</p>
+        </div>
+    </div>
+</body>
+</html>
